@@ -22,7 +22,8 @@ public class HelloServlet extends HttpServlet {
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" +"Bonjour " +  m.getFullName() + "</h1>");
+
+        out.println("<h1>" +"Bonjour " +  request.getSession().getAttribute("login") + "</h1>");
         out.println("</body></html>");
     }
 

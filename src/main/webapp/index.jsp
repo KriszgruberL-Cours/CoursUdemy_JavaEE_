@@ -5,11 +5,16 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<a href="login.jsp">Log in</a>
+
+<a href="logout">Logout</a>
+<h1>Hello ${login}
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+
 <a href="catalogue">Accès au catalogue des oeuvres</a>
+<a href="add.jsp">Ajout d'un oeuvre au catalogue</a>
 <a href="pdf">PDF</a>
+<a href="saisie-nombre.jsp">Calculatrice</a>
 </body>
 </html>
