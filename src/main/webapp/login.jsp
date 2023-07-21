@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,6 +20,12 @@
   Login : <input type="text" name="log" >
   Password : <input type="password" name="pwd">
   <input type="submit" value="Log">
+
+<c:if test="${not empty login}">
+    <h2>Logged with succes!</h2>
+    <a href="index.jsp">Home</a>
+</c:if>
+
 </form>
 
 

@@ -2,6 +2,7 @@ package com.example.coursudemy_javaee_.servlets;
 
 import com.example.coursudemy_javaee_.entities.Catalogue;
 import com.example.coursudemy_javaee_.entities.Work;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,20 +32,9 @@ public class WorkDetailsServlet extends HttpServlet {
                 .findFirst()
                 .get();
 
-
-        out.println("<html><body><ul>");
-
-        out.println(" <li>Title : "+ work.getTitle() + "</li> ");
-        out.println(" <li>Release : "+ work.getRelease() + "</li> ");
-        out.println(" <li>Gender : "+ work.getGender() + "</li> ");
-        out.println(" <li>Artist : "+ work.getMainArtist().getName() + "</li> ");
-        out.println(" <li>Summary : "+ work.getSummary() + "</li> ");
-        out.println("<form action=\"addToCart\" method=\"post\">");
-        out.println("<input type=\"hidden\" name=\"id\" value=\""+work.getId()+"\"/>");
-        out.println("<input type=\"submit\" value=\"Add to cart\"+work.getId()+\"\">");
-        out.println("</form>");
-
-        out.println("</ul></body></html>");
+        request.setAttribute("work", work);
+        RequestDispatcher dis = request.getRequestDispatcher("/work-details.jsp");
+        dis.forward(request,response);
     }
 
     @Override

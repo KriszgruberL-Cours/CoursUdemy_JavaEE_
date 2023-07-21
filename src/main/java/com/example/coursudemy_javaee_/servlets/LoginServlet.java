@@ -28,25 +28,19 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-
-        PrintWriter out = response.getWriter();
 
         String login = request.getParameter("log").trim();
         String pwd = request.getParameter("pwd").trim();
-        System.out.println(login);
+
+
+        HttpSession session = request.getSession();
+        session.setAttribute("login", login);
 
         if (login.equals("michel") && pwd.equals("123456") || login.equals("caroline") && pwd.equals("abcdef") ){
-            out.println("""
-                <html><body>
-                <h2>Logged with succes!</h2>
-                <a href="index.jsp">Home</a>
-                </body></html>
-                """);
-            HttpSession session = request.getSession();
+
             session.setAttribute("login", login);
         } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 

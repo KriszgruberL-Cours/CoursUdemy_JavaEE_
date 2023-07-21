@@ -4,10 +4,16 @@ import lombok.*;
 
 import java.util.HashSet;
 
-@Getter
-@Setter
 
 public class Catalogue {
 
     public static HashSet<Work> listOfWork = new HashSet<Work>();
+
+    public static HashSet<Work> getListOfWork() {
+        return listOfWork;
+    }
+
+    public static void setListOfWork(HashSet<Work> listOfWork) {
+        Catalogue.listOfWork = listOfWork;
+    }
 }

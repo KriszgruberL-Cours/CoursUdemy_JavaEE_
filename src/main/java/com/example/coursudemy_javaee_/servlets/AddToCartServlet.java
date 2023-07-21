@@ -3,6 +3,7 @@ package com.example.coursudemy_javaee_.servlets;
 import com.example.coursudemy_javaee_.entities.Catalogue;
 import com.example.coursudemy_javaee_.entities.ShoppingCart;
 import com.example.coursudemy_javaee_.entities.Work;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -46,15 +47,9 @@ public class AddToCartServlet extends HttpServlet {
             cart.getItems().add(work.get());
         }
 
-        PrintWriter out = response.getWriter();
-
-        out.println("""
-                <html><body>
-                <h2>Oeuvre ajouté au caddie</h2>
-                <a href="catalogue">Retourner au catalogue</a>
-                <a href="index.jsp">Retourner a l'accueil</a>
-                </body></html>
-                """);
+        request.setAttribute("cart", cart);
+        RequestDispatcher dis = request.getRequestDispatcher("/addToCart.jsp");
+        dis.forward(request, response);
     }
 
     @Override
