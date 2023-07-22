@@ -6,9 +6,8 @@ $(document).ready(function(){
         }
         else{
             $.ajax({
-                url: "somme",
+                url: "rest/somme-et-produit",
                 data: $("form").serialize(),
-                dataType: "json",
                 success: function(resultObject) {
                     $("p").remove();
                     var message = "<p>Le somme des 2 nombres est de "+ resultObject.somme.numerique+ " - " + resultObject.somme.texte+"</p>"
@@ -23,7 +22,7 @@ $(document).ready(function(){
 $(document).ready(function () {
     $('#catalogue').on("click", function () {
         $.ajax({
-            url: 'catalogue',
+            url: 'rest/catalogue/liste',
             success: function (data) {
                 $('#catalog').empty();
                 data.forEach(w => {
@@ -31,6 +30,26 @@ $(document).ready(function () {
                 });
             }
         });
+    });
+});
+
+$(document).ready(function () {
+    $('a[href=catalogue]').on('click', function (event) {
+        event.preventDefault();
+        if ($('body').children().length<6) {
+            $.ajax({
+                url: "rest/work",
+
+                success: function (result) {
+                    var catalog='';
+                    result.forEach(function(nextWork){
+                        catalog=catalog.concat(nextWork.title+" ("+nextWork.release+")<BR/>");
+                    });
+
+                    $("a[href=catalogue]").after('<br>'+catalog);
+                }
+            });
+        }
     });
 });
 //
